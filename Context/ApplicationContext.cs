@@ -16,8 +16,14 @@ namespace CapPlacement.Context
             base.OnModelCreating(builder);
 
             builder.Entity<ProgramDetail>()
-       .ToContainer("ProgramDetails")
-       .HasPartitionKey(p => p.Id);
+                .ToContainer("ProgramDetails")
+                .HasPartitionKey(p => p.Id); 
+
+            builder.Entity<Application>()
+                .ToContainer("Applications")
+                .HasPartitionKey(p => p.Id);
+
+
 
             builder.Entity<Stage>().HasData(
                 new Stage

@@ -5,17 +5,21 @@ using CapPlacement.Interfaces.Repositories;
 using CapPlacement.Context; 
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.Azure.Cosmos;
+using System.Net;
 
 namespace CapPlacement.Implementations.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel, new()
     {
         protected ApplicationContext _context;
+        private readonly CosmosClient _cosmosClient;
 
         // Constructor that takes an ApplicationContext instance and assigns it to the _context field.
-        public GenericRepository(ApplicationContext context)
+        public GenericRepository(ApplicationContext context, CosmosClient cosmosClient)
         {
             _context = context;
+            _cosmosClient = cosmosClient;
             // The ApplicationContext is used to access the database and perform CRUD operations on entities of type 'T'.
         }
 
@@ -47,10 +51,34 @@ namespace CapPlacement.Implementations.Repositories
         }
 
         // Asynchronously retrieves all entities of type 'T' from the database.
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAppsAsync(string databaseName, string containerName)
         {
-            return await _context.Set<T>().ToListAsync();
+            try
+            {
+                var container = _cosmosClient.GetContainer(databaseName, containerName);
+                var iterator = container.GetItemQueryIterator<T>();
+                var results = new List<T>();
+
+                while (iterator.HasMoreResults)
+                {
+                    var response = await iterator.ReadNextAsync();
+                    results.AddRange(response.ToList());
+                }
+
+                return results;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                // Handle collection not found
+                return Enumerable.Empty<T>();
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw;
+            }
         }
+
 
         // Asynchronously retrieves the entity of type 'T' that satisfies the specified condition represented by the expression.
         public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
@@ -66,7 +94,9 @@ namespace CapPlacement.Implementations.Repositories
             return entity; // Returns the updated entity.
         }
 
-
-
+        public Task<IEnumerable<T>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

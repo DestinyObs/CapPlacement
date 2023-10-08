@@ -8,7 +8,7 @@ namespace CapPlacement.Interfaces.Repositories
     {
         // Adds a new entity asynchronously to the repository
         Task<T> AddAsync(T entity);
-        //Task<T> Where(Expression<Func<ProgramDetail, bool>> expression);
+        Task<IEnumerable<T>> GetAllAppsAsync(string databaseName, string containerName);
 
         // Deletes an entity asynchronously from the repository
         Task DeleteAsync(T entity);

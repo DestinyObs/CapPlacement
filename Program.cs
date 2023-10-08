@@ -32,7 +32,7 @@ namespace CapPlacement
             builder.Services.AddScoped<IMyProgramRepository, ProgramRepository>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
             builder.Services.AddScoped<IStageRepository, StageRepository>();
-            builder.Services.AddScoped<IApplicationTemplateService, ApplicationTemplateService>();
+            builder.Services.AddScoped<IApplicationService, ApplicationService>();
             builder.Services.AddScoped<IPreviewService, PreviewService>();
             builder.Services.AddScoped<IMyProgramDetailsService, ProgramDetailsService>();
             builder.Services.AddScoped<IWorkflowService, WorkflowService>();

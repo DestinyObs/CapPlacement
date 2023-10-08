@@ -83,12 +83,12 @@ namespace CapPlacement.Interfaces.Services
         }
 
         // Method to edit an existing program
-        public async Task<BaseResponse<bool>> EditProgramAsync(UpdateProgram programModel, string programTitle)
+        public async Task<BaseResponse<bool>> EditProgramAsync(UpdateProgram programModel, string programId)
         {
             try
             {
                 // Get the program from the repository based on the program title
-                var program = await _programRepository.GetAsync(pg => pg.ProgramTitle == programTitle);
+                var program = await _programRepository.GetAsync(pg => pg.Id == programId);
 
                 // If the program doesn't exist, return an error response
                 if (program is null)
@@ -96,7 +96,7 @@ namespace CapPlacement.Interfaces.Services
                     return new BaseResponse<bool>
                     {
                         Status = false,
-                        Message = $"Program With Program Title: {programTitle} does not exist",
+                        Message = $"Program With Program Id: {programId} does not exist",
                     };
                 }
 

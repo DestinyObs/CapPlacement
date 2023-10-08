@@ -5,7 +5,7 @@ using CapPlacementTOs.RetrievalModels;
 namespace CapPlacement.Interfaces.Services
 {
     // The interface IApplicationTemplateService defines methods related to application and question manipulation
-    public interface IApplicationTemplateService
+    public interface IApplicationService
     {
         // Creates a new application asynchronously
         Task<BaseResponse<bool>> CreateApplicationAsync(CreateApplication applicationModel);

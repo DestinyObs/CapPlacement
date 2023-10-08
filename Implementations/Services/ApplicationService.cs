@@ -11,14 +11,14 @@ using CapPlacementTOs.RetrievalModels;
 
 namespace CapPlacement.Implementations.Services
 {
-    public class ApplicationTemplateService : IApplicationTemplateService
+    public class ApplicationService : IApplicationService
     {
         private readonly IApplicationRepository _applicationRepository;
         private readonly IQuestionRepository _questionRepository;
         private readonly IStageRepository _stageRepository;
         private readonly IMyProgramRepository _programRepository;
 
-        public ApplicationTemplateService(IApplicationRepository applicationRepository, IQuestionRepository questionRepository,
+        public ApplicationService(IApplicationRepository applicationRepository, IQuestionRepository questionRepository,
          IStageRepository stageRepository, IMyProgramRepository programRepository)
         {
             _applicationRepository = applicationRepository;
@@ -30,43 +30,54 @@ namespace CapPlacement.Implementations.Services
         {
             try
             {
-                var applicationExists = await _applicationRepository.AnyAsync(app => app.EmailAddress == applicationModel.EmailAddress);
-                var stage = await _stageRepository.GetAsync(appliedStage => appliedStage.StageName == "Applied");
-                var program = await _programRepository.GetAsync(pg => pg.ProgramTitle == applicationModel.ProgramTitle);
-                if (applicationExists) return new BaseResponse<bool>
+                var applicationExists = await _applicationRepository.GetAsync(app => app.EmailAddress == applicationModel.EmailAddress);
+                var stages = await _stageRepository.GetAllAppsAsync("YourDatabaseName", "YourStageCollectionName");
+                var programs = await _programRepository.GetAllAppsAsync("TestCosmos", "ProgramDetails");
+
+                var stage = stages.FirstOrDefault(appliedStage => appliedStage.StageName == "Applied");
+                var program = programs.FirstOrDefault(pg => pg.ProgramTitle == applicationModel.ProgramTitle);
+
+                if (applicationExists != null)
                 {
-                    Status = false,
-                    Message = $"Application With Email Address: {applicationModel.EmailAddress} already exists",
-                };
+                    return new BaseResponse<bool>
+                    {
+                        Status = false,
+                        Message = $"Application with Email Address: {applicationModel.EmailAddress} already exists",
+                    };
+                }
+
                 var application = new Application
                 {
                     FirstName = applicationModel.FirstName,
                     LastName = applicationModel.LastName,
                     EmailAddress = applicationModel.EmailAddress,
                     ApplicationCoverImage = applicationModel.ApplicationCoverImage,
-                    StageId = stage.Id,
+                    StageId = stage?.Id ?? throw new InvalidOperationException("Stage not found"),
                     Nationality = applicationModel.Nationality,
                     IdNumber = applicationModel.IdNumber,
                     DateOfBirth = applicationModel.DateOfBirth,
                     Gender = applicationModel.Gender,
                     CurrentResidence = applicationModel.CurrentResidence,
                     Profile = applicationModel.Profile,
-                    ProgramId = program.Id,
+                    ProgramId = program?.Id ?? throw new InvalidOperationException("Program not found"),
                 };
 
                 var savedResponse = await _applicationRepository.AddAsync(application);
-                if (savedResponse is null) return new BaseResponse<bool>
+
+                if (savedResponse is null)
                 {
-                    Status = false,
-                    Message = $"An error occurred, Application could not be saved.",
-                };
+                    return new BaseResponse<bool>
+                    {
+                        Status = false,
+                        Message = $"An error occurred, Application could not be saved.",
+                    };
+                }
 
                 return new BaseResponse<bool>
                 {
-                    Status = false,
-                    Message = $"Application With Email Address: {applicationModel.EmailAddress} already exists",
+                    Status = true,
+                    Message = $"Application with Email Address: {applicationModel.EmailAddress} created successfully",
                 };
-
             }
             catch (System.Exception)
             {

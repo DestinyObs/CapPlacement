@@ -38,9 +38,9 @@ namespace WebAPIProject.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> UpdateProgramAsync([FromBody] UpdateProgram updateProgram, [FromQuery] string programTitle)
+        public async Task<IActionResult> UpdateProgramAsync([FromBody] UpdateProgram updateProgram, [FromQuery] string programId)
         {
-            var response = await _programDetailsService.EditProgramAsync(updateProgram, programTitle);
+            var response = await _programDetailsService.EditProgramAsync(updateProgram, programId);
             return response.Status ? Ok(response) : BadRequest(response);
         }
 
