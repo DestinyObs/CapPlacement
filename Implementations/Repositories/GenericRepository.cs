@@ -7,11 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CapPlacement.Implementations.Repositories
 {
-    // Define the GenericRepository class that implements the IGenericRepository interface.
-    // The class is generic and takes a type parameter 'T' that must be derived from BaseModel and have a parameterless constructor.
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel, new()
     {
-        protected ApplicationContext _context; // Private field to store the ApplicationContext.
+        protected ApplicationContext _context;
 
         // Constructor that takes an ApplicationContext instance and assigns it to the _context field.
         public GenericRepository(ApplicationContext context)

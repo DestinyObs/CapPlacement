@@ -7,7 +7,7 @@ using CapPlacementTOs.RetrievalModels;
 
 namespace CapPlacement.Interfaces.Services
 {
-    public interface IProgramDetailsService
+    public interface IMyProgramDetailsService
     {
         Task<BaseResponse<bool>> AddProgramAsync(CreateProgram programModel);
         Task<BaseResponse<bool>> EditProgramAsync(UpdateProgram programModel, string programTitle);

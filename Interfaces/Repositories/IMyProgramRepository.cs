@@ -3,7 +3,7 @@ using CapPlacement.Models;
 
 namespace TaskProjectWebAPI.Interfaces.Repositories
 {
-    public interface IProgramRepository : IGenericRepository<ProgramDetail>
+    public interface IMyProgramRepository : IGenericRepository<ProgramDetail>
     {
     }
 }

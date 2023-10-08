@@ -27,7 +27,7 @@ namespace CapPlacement.Models
 
         // ApplicantSkills represents the required skills for applicants, initialized as an empty list.
         [Required]
-        public List<Skills> ApplicantSkills { get; set; } = new List<Skills>();
+        public List<string> ApplicantSkills { get; set; } = new List<string>();
 
         // Benefits represents the benefits offered by the program, initialized as an empty list.
         [Required]

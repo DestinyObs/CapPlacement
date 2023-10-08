@@ -14,11 +14,11 @@ namespace CapPlacement.Implementations.Services
     public class PreviewService : IPreviewService
     {
         // Private fields to hold references to repositories
-        private readonly IProgramRepository _programRepository;
+        private readonly IMyProgramRepository _programRepository;
         private readonly IApplicationRepository _appRepository;
 
         // Constructor with dependency injection
-        public PreviewService(IProgramRepository programRepository, IApplicationRepository appRepository)
+        public PreviewService(IMyProgramRepository programRepository, IApplicationRepository appRepository)
         {
             _programRepository = programRepository;
             _appRepository = appRepository;

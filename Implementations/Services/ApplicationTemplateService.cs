@@ -16,10 +16,10 @@ namespace CapPlacement.Implementations.Services
         private readonly IApplicationRepository _applicationRepository;
         private readonly IQuestionRepository _questionRepository;
         private readonly IStageRepository _stageRepository;
-        private readonly IProgramRepository _programRepository;
+        private readonly IMyProgramRepository _programRepository;
 
         public ApplicationTemplateService(IApplicationRepository applicationRepository, IQuestionRepository questionRepository,
-         IStageRepository stageRepository, IProgramRepository programRepository)
+         IStageRepository stageRepository, IMyProgramRepository programRepository)
         {
             _applicationRepository = applicationRepository;
             _questionRepository = questionRepository;

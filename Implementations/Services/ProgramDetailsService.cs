@@ -11,12 +11,12 @@ using CapPlacement.Models;
 namespace CapPlacement.Interfaces.Services
 {
     // Service for managing program details
-    public class ProgramDetailsService : IProgramDetailsService
+    public class ProgramDetailsService : IMyProgramDetailsService
     {
-        private readonly IProgramRepository _programRepository;
+        private readonly IMyProgramRepository _programRepository;
 
         // Constructor for dependency injection
-        public ProgramDetailsService(IProgramRepository programRepository)
+        public ProgramDetailsService(IMyProgramRepository programRepository)
         {
             _programRepository = programRepository;
         }
