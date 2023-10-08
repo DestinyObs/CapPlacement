@@ -31,6 +31,7 @@ namespace CapPlacement
             builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
             builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+
             builder.Services.AddScoped<IStageRepository, StageRepository>();
             builder.Services.AddScoped<IApplicationTemplateService, ApplicationTemplateService>();
             builder.Services.AddScoped<IPreviewService, PreviewService>();
