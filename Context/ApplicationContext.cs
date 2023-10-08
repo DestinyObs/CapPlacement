@@ -23,7 +23,9 @@ namespace CapPlacement.Context
                 .ToContainer("Applications")
                 .HasPartitionKey(p => p.Id);
 
-
+            builder.Entity<Stage>()
+               .ToContainer("Stages")
+               .HasPartitionKey(p => p.Id);
 
             builder.Entity<Stage>().HasData(
                 new Stage

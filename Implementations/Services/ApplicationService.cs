@@ -31,7 +31,7 @@ namespace CapPlacement.Implementations.Services
             try
             {
                 var applicationExists = await _applicationRepository.GetAsync(app => app.EmailAddress == applicationModel.EmailAddress);
-                var stages = await _stageRepository.GetAllAppsAsync("YourDatabaseName", "YourStageCollectionName");
+                var stages = await _stageRepository.GetAllAppsAsync("TestCosmos", "Stages");
                 var programs = await _programRepository.GetAllAppsAsync("TestCosmos", "ProgramDetails");
 
                 var stage = stages.FirstOrDefault(appliedStage => appliedStage.StageName == "Applied");
