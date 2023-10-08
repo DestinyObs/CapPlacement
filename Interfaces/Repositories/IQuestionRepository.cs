@@ -1,6 +1,8 @@
-﻿namespace TaskProjectWebAPI.Interfaces.Repositories
+﻿using CapPlacement.Models;
+
+namespace CapPlacement.Interfaces.Repositories
 {
-    public interface IQuestionRepository : IGenericRepository<TaskConsole.Models.Question>
+    public interface IQuestionRepository : IGenericRepository<Question>
     {
     }
 }

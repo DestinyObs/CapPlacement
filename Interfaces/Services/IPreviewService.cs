@@ -1,6 +1,8 @@
-using TaskConsole.DTOs.RetrievalModels;
 using System.Threading.Tasks;
-namespace TaskProjectWebAPI.Interfaces.Services
+using CapPlacement.DTOs.RetrievalModels;
+using CapPlacementTOs.RetrievalModels;
+
+namespace CapPlacement.Interfaces.Services
 {
     public interface IPreviewService
     {

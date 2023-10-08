@@ -5,6 +5,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CapPlacement.Context;
 using CapPlacement.Context;
+using CapPlacement.Interfaces.Services;
+using CapPlacement.Implementations.Services;
+using CapPlacement.Interfaces.Repositories;
+using TaskProjectWebAPI.Interfaces.Repositories;
+using CapPlacement.Implementations.Repositories;
 
 namespace CapPlacement
 {
@@ -21,6 +26,16 @@ namespace CapPlacement
                 options.UseCosmos(
                     builder.Configuration["CosmosDBConnectionString"],
                     databaseName: builder.Configuration["CosmosDBDatabaseName"]));
+
+            builder.Services.AddControllers();
+            builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+            builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+            builder.Services.AddScoped<IStageRepository, StageRepository>();
+            builder.Services.AddScoped<IApplicationTemplateService, ApplicationTemplateService>();
+            builder.Services.AddScoped<IPreviewService, PreviewService>();
+            builder.Services.AddScoped<IProgramDetailsService, ProgramDetailsService>();
+            builder.Services.AddScoped<IWorkflowService, WorkflowService>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

@@ -1,6 +1,6 @@
-﻿using TaskConsole.Models;
+﻿using CapPlacement.Models;
 
-namespace TaskProjectWebAPI.Interfaces.Repositories
+namespace CapPlacement.Interfaces.Repositories
 {
     public interface IApplicationRepository : IGenericRepository<Application>
     {

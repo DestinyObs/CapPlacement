@@ -25,7 +25,7 @@ namespace CapPlacement.Context
             );
         }
 
-        public DbSet<ProgramDetaiil> Programs { get; set; }
+        public DbSet<ProgramDetail> Programs { get; set; }
 
         public DbSet<Question> Questions { get; set; }
 

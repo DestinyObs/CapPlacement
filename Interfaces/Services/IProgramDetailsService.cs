@@ -1,9 +1,11 @@
-﻿using TaskConsole.DTOs.RetrievalModels;
-using TaskConsole.DTOs.RequestModels;
+﻿
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using CapPlacement.DTOs.RequestModels;
+using CapPlacement.DTOs.RetrievalModels;
+using CapPlacementTOs.RetrievalModels;
 
-namespace TaskProjectWebAPI.Interfaces.Services
+namespace CapPlacement.Interfaces.Services
 {
     public interface IProgramDetailsService
     {

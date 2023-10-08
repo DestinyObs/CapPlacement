@@ -15,7 +15,7 @@ namespace CapPlacement.Models
     }
 
     // Program class represents a program with additional information.
-    public class ProgramDetaiil : AdditionalInformation
+    public class ProgramDetail : AdditionalInformation
     {
         // ProgramTitle is the title of the program and is required.
         [Required]

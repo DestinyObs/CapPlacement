@@ -1,6 +1,8 @@
-﻿namespace TaskProjectWebAPI.Interfaces.Repositories
+﻿using CapPlacement.Models;
+
+namespace CapPlacement.Interfaces.Repositories
 {
-    public interface IStageRepository : IGenericRepository<TaskConsole.Models.Stage>
+    public interface IStageRepository : IGenericRepository<Stage>
     {
     }
 }

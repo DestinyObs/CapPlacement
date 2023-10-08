@@ -1,7 +1,8 @@
-using TaskConsole.DTOs.RequestModels;
-using TaskConsole.DTOs.RetrievalModels;
+using CapPlacement.DTOs.RequestModels;
+using CapPlacement.DTOs.RetrievalModels;
+using CapPlacementTOs.RetrievalModels;
 
-namespace TaskProjectWebAPI.Interfaces.Services
+namespace CapPlacement.Interfaces.Services
 {
     // The interface IApplicationTemplateService defines methods related to application and question manipulation
     public interface IApplicationTemplateService

@@ -1,10 +1,11 @@
-using TaskConsole.DTOs.RetrievalModels;
-using TaskConsole.DTOs.RequestModels;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TaskConsole.DTOs.RequestModels.Stage;
+using CapPlacement.DTOs.RetrievalModels;
+using CapPlacementTOs.RetrievalModels;
+using CapPlacement.DTOs.RequestModels.Stage;
+using CapPlacement.DTOs.RequestModels;
 
-namespace TaskProjectWebAPI.Interfaces.Services
+namespace CapPlacement.Interfaces.Services
 {
     public interface IWorkflowService
     {

@@ -37,7 +37,7 @@ namespace CapPlacement.Models
         public string StageId { get; set; }
 
         // Program represents the associated Program entity for the application.
-        public CapPlacement.Models.ProgramDetaiil Program { get; set; }
+        public ProgramDetail Program { get; set; }
 
         // ProgramId is the foreign key referencing the associated Program entity.
         public string ProgramId { get; set; }
