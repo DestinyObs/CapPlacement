@@ -27,22 +27,37 @@ namespace CapPlacement.Interfaces.Services
             try
             {
                 // Check if a program with the same title already exists
-                var programExists = await _programRepository.AnyAsync(pg => pg.ProgramTitle == programModel.ProgramTitle);
+                var programExists = await _programRepository
+                    .GetAsync(pg => pg.ProgramTitle == programModel.ProgramTitle);
 
                 // If program exists, return an error response
-                if (programExists) return new BaseResponse<bool>
+                if (programExists != null) return new BaseResponse<bool>
                 {
                     Status = false,
                     Message = $"Program With Program Title: {programModel.ProgramTitle} already exists",
                 };
 
+
                 // Create a new program instance
                 var program = new ProgramDetail
                 {
                     ProgramTitle = programModel.ProgramTitle,
+                    Description = programModel.Description,
+                    ApplicantSkills = programModel.ApplicantSkills.Select(skill => (string)skill).ToList(),
+                    Benefits = programModel.Benefits,
+                    ApplicationCriteria = programModel.ApplicationCriteria,
                     ProgramType = programModel.ProgramType,
-                    // Initialize other properties from the model
+                    ProgramStart = programModel.ProgramStart,
+                    ApplicationStart = programModel.ApplicationStart,
+                    ApplicationEnds = programModel.ApplicationEnds,
+                    ApplicantQualification = programModel.ApplicantQualification,
+                    ProgramLocations = programModel.ProgramLocations
+                        .Select(location => new ProgramLocation { City = location.City, Country = location.Country })
+                        .ToList(),
+                    DurationInMonths = programModel.DurationInMonths,
+                    MaxApplications = programModel.MaxApplications
                 };
+
 
                 // Add the program to the repository
                 var savedResponse = await _programRepository.AddAsync(program);

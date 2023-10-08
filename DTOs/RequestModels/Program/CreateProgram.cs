@@ -14,7 +14,7 @@ namespace CapPlacement.DTOs.RequestModels
 
         // ApplicantSkills property represents a list of skills required for the program,
         // initialized as an empty list by default
-        public List<Skills> ApplicantSkills { get; set; } = new List<Skills>();
+        public List<string> ApplicantSkills { get; set; } = new List<string>();
 
         // Benefits property represents a list of benefits offered by the program,
         // initialized as an empty list by default

@@ -4,6 +4,7 @@ using CapPlacement.Models;
 using CapPlacement.Interfaces.Repositories;
 using CapPlacement.Context; 
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CapPlacement.Implementations.Repositories
 {
@@ -64,5 +65,8 @@ namespace CapPlacement.Implementations.Repositories
             await _context.SaveChangesAsync();
             return entity; // Returns the updated entity.
         }
+
+
+
     }
 }
